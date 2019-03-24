@@ -15,12 +15,12 @@ import javax.inject.Singleton
 @Module(includes = [
     ActivityBuilder::class
 ])
-class AppModule {
+open class AppModule(private val context: Context) {
     @Provides
     @Singleton
     fun providesDiffCallback() = DiffCallback()
 
     @Provides
     @Singleton
-    fun provideConnectionLiveData(context: Context) = ConnectionLiveData(context)
+    fun provideConnectionLiveData() = ConnectionLiveData(context)
 }

@@ -31,6 +31,7 @@ interface AppComponent : AndroidInjector<MainApp> {
         @BindsInstance
         fun create(app: Application): Builder
         fun networkModule(networkModule: NetworkModule): Builder
+        fun appModule(appModule: AppModule): Builder
         fun build(): AppComponent
     }
 }
