@@ -16,7 +16,7 @@ class MainApp : DaggerApplication() {
         return DaggerAppComponent
             .builder()
             .create(this)
-            .networkModule(NetworkModule("https://inyomanw.com/MasakinMa/"))
+            .networkModule(NetworkModule("https://api.themoviedb.org/3/"))
             .build()
     }
 }
