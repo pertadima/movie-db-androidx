@@ -7,6 +7,7 @@ import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
 import id.co.moviedb.MainApp
+import id.co.moviedb.deps.module.AppModule
 import id.co.moviedb.deps.module.NetworkModule
 import javax.inject.Singleton
 
@@ -17,7 +18,8 @@ import javax.inject.Singleton
 @Singleton
 @Component(modules = [
     AndroidSupportInjectionModule::class,
-    NetworkModule::class
+    NetworkModule::class,
+    AppModule::class
 ])
 
 interface AppComponent : AndroidInjector<MainApp> {
