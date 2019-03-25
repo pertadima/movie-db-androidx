@@ -1,6 +1,5 @@
 package id.co.moviedb.ui.home
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.co.moviedb.base.BaseViewModel
@@ -71,7 +70,7 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
             isEmptyGenre.postValue(it.isNullOrEmpty())
             listGenre.postValue(it)
             isLoadingGenre.postValue(false)
-        },{
+        }, {
             isError.postValue(it)
             isLoadingGenre.postValue(false)
         })
@@ -81,7 +80,7 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         isLoadingPopularMovie.postValue(true)
         networkAdapter.getPopularMovie(apiKey).onResult({
             isEmptyPopularMovie.postValue(it.results.isNullOrEmpty())
-            listPopularMovie.postValue(it.results?.take(6))
+            listPopularMovie.postValue(it.results?.take(10))
             isLoadingPopularMovie.postValue(false)
         }, {
             isError.postValue(it)

@@ -4,18 +4,23 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.*
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
 import id.co.moviedb.commons.DiffCallback
 import id.co.moviedb.commons.GeneralRecyclerView
 import id.co.moviedb.commons.goneIf
 import id.co.moviedb.commons.loadImage
+import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesModel
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.default_toolbar.view.*
+import kotlinx.android.synthetic.main.viewholder_genres.view.*
 import kotlinx.android.synthetic.main.viewholder_now_playing_movies.view.*
 import kotlinx.android.synthetic.main.viewholder_popular_movies.view.*
+import id.co.moviedb.commons.SpacesItemDecoration
 import javax.inject.Inject
 
 
@@ -52,6 +57,19 @@ class MainActivity : BaseActivity() {
         )
     }
 
+    private val genresAdapter by lazy {
+        GeneralRecyclerView<GenreModel>(
+            diffCallback = diffCallback,
+            holderResId = R.layout.viewholder_genres,
+            onBind = { genreModel, view ->
+                setupGenresMovie(genreModel, view)
+            },
+            itemListener = { genreModel, _, _ ->
+
+            }
+        )
+    }
+
     override fun onSetupLayout(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         setupToolbarProperties(
@@ -67,36 +85,44 @@ class MainActivity : BaseActivity() {
     }
 
     private fun observeState() {
-        mainViewModel.observeGenreMovies().onResult {
-
-        }
-
-        mainViewModel.observeNowPlayingMovie().onResult { result ->
-            result?.let {
-                nowPlayingAdapter.setData(it)
-            }
-        }
-
-        mainViewModel.observeUpComingMovie().onResult {
-
-        }
-
-        mainViewModel.observePopularMovie().onResult { result ->
-            result?.let {
-                popularMovieAdapter.setData(it)
+        with(mainViewModel) {
+            observeGenreMovies().onResult { result ->
+                result?.let {
+                    genresAdapter.setData(it)
+                }
             }
 
-        }
+            observeNowPlayingMovie().onResult { result ->
+                result?.let {
+                    nowPlayingAdapter.setData(it)
+                }
+            }
 
-        mainViewModel.observeLoadingNowPlayingMovie().onResult {
-            pb_now_playing.goneIf(it)
-        }
+            observeUpComingMovie().onResult {
 
-        mainViewModel.observeLoadingPopularMovie().onResult {
-            pb_popular_movie.goneIf(it)
-        }
+            }
 
-        mainViewModel.fetchHome(getString(R.string.api_key_movie_db))
+            observePopularMovie().onResult { result ->
+                result?.let {
+                    popularMovieAdapter.setData(it)
+                }
+
+            }
+
+            observeLoadingNowPlayingMovie().onResult {
+                pb_now_playing.goneIf(it)
+            }
+
+            observeLoadingPopularMovie().onResult {
+                pb_popular_movie.goneIf(it)
+            }
+
+            observeLoadingGenre().onResult {
+                pb_genres.goneIf(it)
+            }
+
+            fetchHome(getString(R.string.api_key_movie_db))
+        }
     }
 
     private fun initRecyclerView() {
@@ -114,6 +140,13 @@ class MainActivity : BaseActivity() {
             layoutManager = LinearLayoutManager(this@MainActivity)
             isNestedScrollingEnabled = false
         }
+
+        with(rv_genres) {
+            adapter = genresAdapter
+            layoutManager = GridLayoutManager(this@MainActivity, 2)
+            isNestedScrollingEnabled = false
+            addItemDecoration(SpacesItemDecoration(2, 10, false))
+        }
     }
 
     private fun setupNowPlayingMovie(model: MoviesModel, view: View) {
@@ -124,12 +157,18 @@ class MainActivity : BaseActivity() {
         }
     }
 
-    private fun setupPopularMovie(model: MoviesModel,view: View) {
+    private fun setupPopularMovie(model: MoviesModel, view: View) {
         with(view) {
             img_thumnail_popular.loadImage(getString(R.string.image_url, model.posterPath))
             tv_movie_title_popular.text = model.title
             tv_desc.text = model.overview
             tv_rating_popular.text = model.voteAverage.toString()
+        }
+    }
+
+    private fun setupGenresMovie(model: GenreModel, view: View) {
+        with(view) {
+            tv_genre_name.text = model.name
         }
     }
 }
