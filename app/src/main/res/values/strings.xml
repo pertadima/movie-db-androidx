@@ -1,5 +1,10 @@
 <resources>
     <string name="app_name">Movie-db</string>
     <string name="empty_string"> </string>
+
     <string name="api_key_movie_db">c8ff8c510e74a75a3643870242745d71</string>
+    <string name="image_url">https://image.tmdb.org/t/p/w500%s</string>
+
+    <string name="now_playing_text">Now Playing</string>
+    <string name="see_all_text">See All</string>
 </resources>

@@ -10,6 +10,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
 import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.LifecycleRegistry
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import dagger.android.support.DaggerAppCompatActivity
@@ -19,11 +20,12 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
 
+
 /**
  * Created by pertadima on 24,March,2019
  */
 
-abstract class BaseActivity: DaggerAppCompatActivity(), LifecycleOwner {
+abstract class BaseActivity: DaggerAppCompatActivity() {
 
     @Inject
     lateinit var connectionLiveData: ConnectionLiveData
@@ -48,6 +50,14 @@ abstract class BaseActivity: DaggerAppCompatActivity(), LifecycleOwner {
         super.onCreate(savedInstanceState)
         onSetupLayout(savedInstanceState)
         onViewReady(savedInstanceState)
+    }
+
+    fun setupToolbarProperties(toolbarId: Toolbar,
+                               tvTitle: TextView? = null,
+                               @StringRes title: Int = R.string.empty_string) {
+        setSupportActionBar(toolbarId)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
+        tvTitle?.setText(title)
     }
 
     fun setupToolbarProperties(toolbarId: Toolbar,

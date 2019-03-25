@@ -1,5 +1,6 @@
 package id.co.moviedb.ui.home
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import id.co.moviedb.base.BaseViewModel
@@ -21,6 +22,11 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     private val listUpComingMovie = MutableLiveData<List<MoviesModel>?>()
     private val listPopularMovie = MutableLiveData<List<MoviesModel>?>()
 
+    fun observeGenreMovies(): LiveData<List<GenreModel>?> = listGenre
+    fun observeNowPlayingMovie(): LiveData<List<MoviesModel>?> = listNowPlayingMovie
+    fun observeUpComingMovie(): LiveData<List<MoviesModel>?> = listUpComingMovie
+    fun observePopularMovie(): LiveData<List<MoviesModel>?> = listPopularMovie
+
     private val isEmptyGenre = MutableLiveData<Boolean>()
     fun observeEmptyGenre(): LiveData<Boolean> = isEmptyData
 
@@ -31,19 +37,19 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     fun observeEmptyPopularMovie(): LiveData<Boolean> = isEmptyPopularMovie
 
     private val isLoadingPopularMovie = MutableLiveData<Boolean>()
-    fun observePopularMovie(): LiveData<Boolean> = isLoadingPopularMovie
+    fun observeLoadingPopularMovie(): LiveData<Boolean> = isLoadingPopularMovie
 
     private val isEmptyNowPlayingMovie = MutableLiveData<Boolean>()
-    fun observeEmptyNowPlayingMovie(): LiveData<Boolean> = isEmptyNowPlayingMovie
+    fun observeLoadingEmptyNowPlayingMovie(): LiveData<Boolean> = isEmptyNowPlayingMovie
 
     private val isLoadingNowPlayingMovie = MutableLiveData<Boolean>()
-    fun observeNowPlayingMovie(): LiveData<Boolean> = isLoadingNowPlayingMovie
+    fun observeLoadingNowPlayingMovie(): LiveData<Boolean> = isLoadingNowPlayingMovie
 
     private val isEmptyUpComingMovie = MutableLiveData<Boolean>()
     fun observeEmptyUpComingMovie(): LiveData<Boolean> = isEmptyUpComingMovie
 
     private val isLoadingUpComingMovie = MutableLiveData<Boolean>()
-    fun observeUpComingMovie(): LiveData<Boolean> = isLoadingUpComingMovie
+    fun observeLoadingUpComingMovie(): LiveData<Boolean> = isLoadingUpComingMovie
 
     init {
         listGenre.value = listOf()
@@ -56,6 +62,7 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         fetchGenre(apiKey)
         fetchPopularMovie(apiKey)
         fetchNowPlayingMovie(apiKey)
+        fetchUpComingMovie(apiKey)
     }
 
     private fun fetchGenre(apiKey: String) {
