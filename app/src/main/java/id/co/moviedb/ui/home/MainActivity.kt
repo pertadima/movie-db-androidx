@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.appcompat.widget.Toolbar
-import androidx.recyclerview.widget.DefaultItemAnimator
-import androidx.recyclerview.widget.DividerItemDecoration
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.*
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
 import id.co.moviedb.commons.DiffCallback
@@ -81,6 +79,9 @@ class MainActivity : BaseActivity() {
     }
 
     private fun initRecyclerView() {
+        val snapHelper = LinearSnapHelper()
+        snapHelper.attachToRecyclerView(rv_now_playing)
+
         with(rv_now_playing) {
             adapter = nowPlayingAdapter
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayout.HORIZONTAL, false)
