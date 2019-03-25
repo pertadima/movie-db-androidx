@@ -1,6 +1,7 @@
-package id.co.moviedb
+package id.co.moviedb.ui.home
 
 import android.os.Bundle
+import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
 
 class MainActivity : BaseActivity() {

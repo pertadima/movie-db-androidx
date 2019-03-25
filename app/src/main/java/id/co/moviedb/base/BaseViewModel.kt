@@ -15,8 +15,8 @@ import io.reactivex.schedulers.Schedulers
  * Created by pertadima on 24,March,2019
  */
 
-class BaseViewModel: ViewModel() {
-    private val disposables = CompositeDisposable()
+abstract class BaseViewModel: ViewModel() {
+    protected var disposables = CompositeDisposable()
 
     private val isLoading = MutableLiveData<Boolean>()
     fun observeLoading(): LiveData<Boolean> = isLoading

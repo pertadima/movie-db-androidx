@@ -2,7 +2,10 @@ package id.co.moviedb.networking
 
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesResponse
+import io.reactivex.Observable
 import io.reactivex.Single
+import io.reactivex.disposables.Disposable
+import io.reactivex.functions.Function4
 import javax.inject.Inject
 
 /**
@@ -10,22 +13,22 @@ import javax.inject.Inject
  */
 
 class NetworkAdapter @Inject constructor(private val networkService: NetworkService) {
-    fun getMoviesGenre(): Single<List<GenreModel>> {
-        return networkService.getMoviesGenre("")
+    fun getMoviesGenre(apiKey: String): Single<List<GenreModel>?> {
+        return networkService.getMoviesGenre(apiKey)
             .map {
                 it.genres
             }
     }
 
-    fun getNowPlayingMovie(): Single<MoviesResponse> {
-        return networkService.getNowPlayingMovies("")
+    fun getNowPlayingMovie(apiKey: String): Single<MoviesResponse> {
+        return networkService.getNowPlayingMovies(apiKey)
     }
 
-    fun getPopularMovie(): Single<MoviesResponse> {
-        return networkService.getPopularMovies("")
+    fun getPopularMovie(apiKey: String): Single<MoviesResponse> {
+        return networkService.getPopularMovies(apiKey)
     }
 
-    fun getUpComingMovie(): Single<MoviesResponse> {
-        return networkService.getUpComingMovies("")
+    fun getUpComingMovie(apiKey: String): Single<MoviesResponse> {
+        return networkService.getUpComingMovies(apiKey)
     }
 }

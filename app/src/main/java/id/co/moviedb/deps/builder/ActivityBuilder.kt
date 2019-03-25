@@ -2,7 +2,7 @@ package id.co.moviedb.deps.builder
 
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
-import id.co.moviedb.MainActivity
+import id.co.moviedb.ui.home.MainActivity
 import id.co.moviedb.deps.ActivityScoped
 
 /**

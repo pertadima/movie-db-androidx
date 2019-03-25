@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Movie-db</string>
     <string name="empty_string"> </string>
+    <string name="api_key_movie_db">c8ff8c510e74a75a3643870242745d71</string>
 </resources>
