@@ -51,7 +51,7 @@
             android:fontFamily="@font/roboto_medium"
             android:id="@+id/tv_rating"
             app:layout_constraintTop_toBottomOf="@id/tv_movie_title"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="5dp"/>
 
     <ImageView
             android:id="@+id/ic_star"

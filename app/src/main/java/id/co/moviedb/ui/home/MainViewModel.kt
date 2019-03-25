@@ -81,7 +81,7 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         isLoadingPopularMovie.postValue(true)
         networkAdapter.getPopularMovie(apiKey).onResult({
             isEmptyPopularMovie.postValue(it.results.isNullOrEmpty())
-            listPopularMovie.postValue(it.results)
+            listPopularMovie.postValue(it.results?.take(6))
             isLoadingPopularMovie.postValue(false)
         }, {
             isError.postValue(it)

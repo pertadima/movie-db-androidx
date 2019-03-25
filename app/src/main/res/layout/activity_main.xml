@@ -64,6 +64,48 @@
                     style="?android:attr/progressBarStyleSmall"
                     android:layout_height="wrap_content"/>
 
+            <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/lineColor"
+                    android:id="@+id/line"
+                    app:layout_constraintTop_toBottomOf="@id/rv_now_playing"
+                    android:layout_marginTop="20dp"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_title_popular_movie"
+                    app:layout_constraintTop_toBottomOf="@id/line"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    style="@style/HeaderTitle"
+                    android:text="@string/popular_movie_text"/>
+
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tv_see_all_popular_movie"
+                    app:layout_constraintTop_toTopOf="@+id/tv_title_popular_movie"
+                    app:layout_constraintBottom_toBottomOf="@id/tv_title_popular_movie"
+                    app:layout_constraintRight_toRightOf="parent"
+                    style="@style/SeeAllHeader"
+                    android:text="@string/see_all_text"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    app:layout_constraintTop_toBottomOf="@id/tv_title_popular_movie"
+                    android:id="@+id/rv_popular_movie"
+                    android:layout_height="wrap_content"/>
+
+            <ProgressBar
+                    android:id="@+id/pb_popular_movie"
+                    android:layout_width="wrap_content"
+                    app:layout_constraintTop_toTopOf="@id/rv_popular_movie"
+                    app:layout_constraintBottom_toBottomOf="@id/rv_popular_movie"
+                    app:layout_constraintLeft_toLeftOf="@id/rv_popular_movie"
+                    app:layout_constraintRight_toRightOf="@id/rv_popular_movie"
+                    style="?android:attr/progressBarStyleSmall"
+                    android:layout_height="wrap_content"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -90,7 +90,7 @@ class GeneralRecyclerView<T : Any>(
 
     private fun setFadeAnimation(view: View) {
         val anim = AlphaAnimation(0.0f, 1.0f)
-        anim.duration = 300
+        anim.duration = 400
         view.startAnimation(anim)
     }
 }

@@ -7,4 +7,5 @@
 
     <string name="now_playing_text">Now Playing</string>
     <string name="see_all_text">See All</string>
+    <string name="popular_movie_text">Popular Movie</string>
 </resources>

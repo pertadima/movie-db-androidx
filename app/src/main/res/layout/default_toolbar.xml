@@ -8,7 +8,7 @@
         android:background="@android:color/white"
         android:minHeight="?attr/actionBarSize"
         app:layout_scrollFlags="enterAlways"
-        android:elevation="0dp"
+        android:elevation="2dp"
         tools:background="@android:color/white"
         tools:ignore="UnusedAttribute">
 
