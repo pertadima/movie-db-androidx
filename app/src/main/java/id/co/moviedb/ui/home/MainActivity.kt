@@ -1,5 +1,6 @@
 package id.co.moviedb.ui.home
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
@@ -12,6 +13,7 @@ import id.co.moviedb.base.BaseActivity
 import id.co.moviedb.commons.*
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesModel
+import id.co.moviedb.ui.detail.DetailMovieActivity
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.default_toolbar.view.*
 import kotlinx.android.synthetic.main.viewholder_genres.view.*
@@ -22,6 +24,10 @@ import javax.inject.Inject
 
 
 class MainActivity : BaseActivity() {
+    companion object {
+        const val MOVIES_ID_TAG = "movies_id"
+    }
+
     @Inject
     lateinit var mainViewModel: MainViewModel
 
@@ -36,7 +42,9 @@ class MainActivity : BaseActivity() {
                 setupNowPlayingMovie(moviesModel, view)
             },
             itemListener = { moviesModel, _, _ ->
-
+                startActivity(Intent(this@MainActivity, DetailMovieActivity::class.java).apply {
+                    putExtra(MOVIES_ID_TAG, moviesModel.id)
+                })
             }
         )
     }
@@ -49,7 +57,9 @@ class MainActivity : BaseActivity() {
                 setupPopularMovie(moviesModel, view)
             },
             itemListener = { moviesModel, _, _ ->
-
+                startActivity(Intent(this@MainActivity, DetailMovieActivity::class.java).apply {
+                    putExtra(MOVIES_ID_TAG, moviesModel.id)
+                })
             }
         )
     }
@@ -75,7 +85,9 @@ class MainActivity : BaseActivity() {
                setUpUpComingMovie(moviesModel, view)
             },
             itemListener = { moviesModel, _, _ ->
-
+                startActivity(Intent(this@MainActivity, DetailMovieActivity::class.java).apply {
+                    putExtra(MOVIES_ID_TAG, moviesModel.id)
+                })
             }
         )
     }

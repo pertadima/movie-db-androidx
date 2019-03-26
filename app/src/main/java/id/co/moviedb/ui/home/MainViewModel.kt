@@ -55,7 +55,6 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     private fun fetchGenre(apiKey: String) {
         isLoadingGenre.postValue(true)
         networkAdapter.getMoviesGenre(apiKey).onResult({
-            isEmptyGenre.postValue(it.isNullOrEmpty())
             listGenre.postValue(it)
             isLoadingGenre.postValue(false)
         }, {
@@ -67,7 +66,6 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     private fun fetchPopularMovie(apiKey: String) {
         isLoadingPopularMovie.postValue(true)
         networkAdapter.getPopularMovie(apiKey).onResult({
-            isEmptyPopularMovie.postValue(it.results.isNullOrEmpty())
             listPopularMovie.postValue(it.results?.take(10))
             isLoadingPopularMovie.postValue(false)
         }, {
@@ -79,7 +77,6 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     private fun fetchNowPlayingMovie(apiKey: String) {
         isLoadingNowPlayingMovie.postValue(true)
         networkAdapter.getNowPlayingMovie(apiKey).onResult({
-            isEmptyNowPlayingMovie.postValue(it.results.isNullOrEmpty())
             listNowPlayingMovie.postValue(it.results)
             isLoadingNowPlayingMovie.postValue(false)
         }, {
@@ -91,7 +88,6 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     private fun fetchUpComingMovie(apiKey: String) {
         isLoadingUpComingMovie.postValue(true)
         networkAdapter.getUpComingMovie(apiKey).onResult({
-            isEmptyUpComingMovie.postValue(it.results.isNullOrEmpty())
             listUpComingMovie.postValue(it.results)
             isLoadingUpComingMovie.postValue(false)
         }, {

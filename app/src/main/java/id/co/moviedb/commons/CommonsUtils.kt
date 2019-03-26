@@ -25,7 +25,6 @@ fun ImageView.loadImage(url: String?) {
                 .diskCacheStrategy(DiskCacheStrategy.RESOURCE)
                 .placeholder(R.color.lineColor)
                 .error(R.color.lineColor)
-                .dontAnimate()
         )
         .into(this)
 }

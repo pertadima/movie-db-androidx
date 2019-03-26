@@ -13,6 +13,10 @@
     <string name="genres_text">Genres</string>
     <string name="upcoming_movies_text">Upcoming Movies</string>
 
+    <string name="detail_movie_text">Movie Detail</string>
+    <string name="overview_text">Overview :</string>
+    <string name="website_text">Website :</string>
+
     <!--- Error Value -->
     <string name="no_internet_text_title">No Internet</string>
     <string name="no_internet_text_desc">Sorry, no internet connection detected. Make sure Wi-Fi or cellular mobile data

@@ -12,7 +12,7 @@ data class DetailMoviesResponse(
     @SerializedName("backdrop_path") val backdropPath: String?,
     @SerializedName("belongs_to_collection") val belongsToCollection: BelongsToCollection?,
     @SerializedName("budget") val budget: Int?,
-    @SerializedName("genres") val genres: List<Genre>?,
+    @SerializedName("genres") val genres: List<GenreModel>?,
     @SerializedName("homepage") val homepage: String?,
     @SerializedName("id") val id: Int?,
     @SerializedName("imdb_id") val imdbId: String?,
@@ -50,22 +50,11 @@ data class ProductionCompany(
 )
 
 data class ProductionCountry(
-    @SerializedName("iso_3166_1")
-    val iso31661: String?,
-    @SerializedName("name")
-    val name: String?
-)
-
-data class Genre(
-    @SerializedName("id")
-    val id: Int?,
-    @SerializedName("name")
-    val name: String?
+    @SerializedName("iso_3166_1") val iso31661: String?,
+    @SerializedName("name") val name: String?
 )
 
 data class SpokenLanguage(
-    @SerializedName("iso_639_1")
-    val iso6391: String?,
-    @SerializedName("name")
-    val name: String?
+    @SerializedName("iso_639_1") val iso6391: String?,
+    @SerializedName("name") val name: String?
 )

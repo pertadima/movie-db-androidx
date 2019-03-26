@@ -60,7 +60,7 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         tvTitle?.setText(title)
     }
 
-    fun setupToolbarProperties(
+    fun setupToolbarPropertiesWithBackButton(
         toolbarId: Toolbar,
         tvTitle: TextView? = null,
         @StringRes title: Int = R.string.empty_string,

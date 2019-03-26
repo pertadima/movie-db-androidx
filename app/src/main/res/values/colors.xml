@@ -7,6 +7,7 @@
     <color name="lineColor">#f1f1f1</color>
     <color name="md_grey_900">#212121</color>
     <color name="star_yellow">#FFEB3B</color>
+    <color name="backgroundTransparent">#3C000000</color>
 
     <color name="title_color">@color/md_grey_900</color>
     <color name="error_color">#FA3737</color>

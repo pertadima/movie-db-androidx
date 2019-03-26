@@ -1,5 +1,6 @@
 package id.co.moviedb.networking
 
+import id.co.moviedb.data.DetailMoviesResponse
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesResponse
 import io.reactivex.Single
@@ -27,5 +28,9 @@ class NetworkAdapter @Inject constructor(private val networkService: NetworkServ
 
     fun getUpComingMovie(apiKey: String): Single<MoviesResponse> {
         return networkService.getUpComingMovies(apiKey)
+    }
+
+    fun getDetailMovies(id: Int, apiKey: String): Single<DetailMoviesResponse> {
+        return networkService.getDetailMovies(id, apiKey)
     }
 }

@@ -3,6 +3,7 @@ package id.co.moviedb.deps.builder
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 import id.co.moviedb.deps.ActivityScoped
+import id.co.moviedb.ui.detail.DetailMovieActivity
 import id.co.moviedb.ui.home.MainActivity
 
 /**
@@ -12,6 +13,10 @@ import id.co.moviedb.ui.home.MainActivity
 @Module
 abstract class ActivityBuilder {
     @ActivityScoped
-    @ContributesAndroidInjector()
+    @ContributesAndroidInjector
     abstract fun bindMainActivity(): MainActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector
+    abstract fun bindDetailMovieActivity(): DetailMovieActivity
 }

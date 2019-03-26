@@ -3,7 +3,7 @@
           xmlns:tools="http://schemas.android.com/tools" package="id.co.moviedb">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
             android:name=".MainApp"
@@ -15,13 +15,19 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             android:fullBackupContent="true">
-        <activity android:name=".ui.home.MainActivity">
+        <activity
+                android:name=".ui.home.MainActivity"
+                android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+                android:name=".ui.detail.DetailMovieActivity"
+                android:screenOrientation="portrait"/>
     </application>
 
 </manifest>

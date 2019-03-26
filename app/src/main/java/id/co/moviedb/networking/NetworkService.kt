@@ -1,9 +1,11 @@
 package id.co.moviedb.networking
 
+import id.co.moviedb.data.DetailMoviesResponse
 import id.co.moviedb.data.GenresResponse
 import id.co.moviedb.data.MoviesResponse
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 /**
@@ -22,4 +24,7 @@ interface NetworkService {
 
     @GET("movie/popular")
     fun getPopularMovies(@Query("api_key") apiKey: String): Single<MoviesResponse>
+
+    @GET("movie/{id}")
+    fun getDetailMovies(@Path("id") id: Int, @Query("api_key") apiKey: String): Single<DetailMoviesResponse>
 }
