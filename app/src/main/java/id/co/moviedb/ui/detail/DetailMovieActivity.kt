@@ -7,21 +7,18 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
-import id.co.moviedb.commons.DiffCallback
-import id.co.moviedb.commons.GeneralRecyclerView
-import id.co.moviedb.commons.goneIf
-import id.co.moviedb.commons.loadImage
+import id.co.moviedb.commons.*
 import id.co.moviedb.data.DetailMoviesResponse
 import id.co.moviedb.data.GenreModel
+import id.co.moviedb.ui.home.MainActivity.Companion.GENRE_ID_TAG
+import id.co.moviedb.ui.home.MainActivity.Companion.GENRE_NAME_TAG
+import id.co.moviedb.ui.home.MainActivity.Companion.MOVIES_ENUM_TAG
 import id.co.moviedb.ui.home.MainActivity.Companion.MOVIES_ID_TAG
+import id.co.moviedb.ui.movies.MoviesActivity
+import id.co.moviedb.ui.movies.MoviesEnum
 import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.default_toolbar.view.*
 import kotlinx.android.synthetic.main.viewholder_genres.view.*
-import id.co.moviedb.commons.SpacesItemDecoration
-import id.co.moviedb.ui.home.MainActivity.Companion.GENRE_ID_TAG
-import id.co.moviedb.ui.home.MainActivity.Companion.MOVIES_ENUM_TAG
-import id.co.moviedb.ui.movies.MoviesActivity
-import id.co.moviedb.ui.movies.MoviesEnum
 import javax.inject.Inject
 
 /**
@@ -46,6 +43,7 @@ class DetailMovieActivity : BaseActivity() {
                 startActivity(Intent(this@DetailMovieActivity, MoviesActivity::class.java).apply {
                     putExtra(MOVIES_ENUM_TAG, MoviesEnum.BYGENRE)
                     putExtra(GENRE_ID_TAG, genreModel.id)
+                    putExtra(GENRE_NAME_TAG, genreModel.name)
                 })
             }
         )

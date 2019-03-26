@@ -30,6 +30,7 @@ class MainActivity : BaseActivity() {
         const val MOVIES_ID_TAG = "movies_id"
         const val MOVIES_ENUM_TAG = "movies_enum"
         const val GENRE_ID_TAG = "genre_id"
+        const val GENRE_NAME_TAG = "genre_name"
         const val STATIC_PAGE = 1
     }
 
@@ -80,6 +81,7 @@ class MainActivity : BaseActivity() {
                 startActivity(Intent(this@MainActivity, MoviesActivity::class.java).apply {
                     putExtra(MOVIES_ENUM_TAG, MoviesEnum.BYGENRE)
                     putExtra(GENRE_ID_TAG, genreModel.id)
+                    putExtra(GENRE_NAME_TAG, genreModel.name)
                 })
             }
         )
@@ -139,6 +141,10 @@ class MainActivity : BaseActivity() {
                 result?.let {
                     popularMovieAdapter.setData(it)
                 }
+
+            }
+
+            observeError().onResult {
 
             }
 

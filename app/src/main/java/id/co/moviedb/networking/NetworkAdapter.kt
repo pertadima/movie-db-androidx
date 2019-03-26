@@ -30,8 +30,8 @@ class NetworkAdapter @Inject constructor(private val networkService: NetworkServ
         return networkService.getUpComingMovies(apiKey, page)
     }
 
-    fun getDiscoverMovies(apiKey: String, page: Int): Single<MoviesResponse> {
-        return networkService.getDiscoverMovies(apiKey, page)
+    fun getDiscoverMovies(apiKey: String, page: Int, genre: Int): Single<MoviesResponse> {
+        return networkService.getDiscoverMovies(apiKey, page, genre)
     }
 
     fun getDetailMovies(id: Int, apiKey: String): Single<DetailMoviesResponse> {
