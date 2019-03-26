@@ -26,26 +26,14 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     fun observeUpComingMovie(): LiveData<List<MoviesModel>?> = listUpComingMovie
     fun observePopularMovie(): LiveData<List<MoviesModel>?> = listPopularMovie
 
-    private val isEmptyGenre = MutableLiveData<Boolean>()
-    fun observeEmptyGenre(): LiveData<Boolean> = isEmptyData
-
     private val isLoadingGenre = MutableLiveData<Boolean>()
     fun observeLoadingGenre(): LiveData<Boolean> = isLoadingGenre
-
-    private val isEmptyPopularMovie = MutableLiveData<Boolean>()
-    fun observeEmptyPopularMovie(): LiveData<Boolean> = isEmptyPopularMovie
 
     private val isLoadingPopularMovie = MutableLiveData<Boolean>()
     fun observeLoadingPopularMovie(): LiveData<Boolean> = isLoadingPopularMovie
 
-    private val isEmptyNowPlayingMovie = MutableLiveData<Boolean>()
-    fun observeLoadingEmptyNowPlayingMovie(): LiveData<Boolean> = isEmptyNowPlayingMovie
-
     private val isLoadingNowPlayingMovie = MutableLiveData<Boolean>()
     fun observeLoadingNowPlayingMovie(): LiveData<Boolean> = isLoadingNowPlayingMovie
-
-    private val isEmptyUpComingMovie = MutableLiveData<Boolean>()
-    fun observeEmptyUpComingMovie(): LiveData<Boolean> = isEmptyUpComingMovie
 
     private val isLoadingUpComingMovie = MutableLiveData<Boolean>()
     fun observeLoadingUpComingMovie(): LiveData<Boolean> = isLoadingUpComingMovie
