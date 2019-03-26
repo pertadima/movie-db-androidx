@@ -138,6 +138,7 @@ class MainActivity : BaseActivity() {
             }
 
             boundNetwork {
+                connectionView(it)
                 if (it) {
                     fetchHome(getString(R.string.api_key_movie_db))
                 }
@@ -205,5 +206,10 @@ class MainActivity : BaseActivity() {
             img_thumnail_upcoming.loadImage(getString(R.string.image_url, model.posterPath))
             tv_movie_title_upcoming.text = model.title
         }
+    }
+
+    private fun connectionView(isConnect: Boolean) {
+        nested_view.goneIf(isConnect)
+        no_internet.goneIf(!isConnect)
     }
 }

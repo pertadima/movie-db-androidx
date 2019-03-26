@@ -16,7 +16,7 @@
     <!--- Error Value -->
     <string name="no_internet_text_title">No Internet</string>
     <string name="no_internet_text_desc">Sorry, no internet connection detected. Make sure Wi-Fi or cellular mobile data
-    is turned on, then try again.</string>
+    is turned on.</string>
 
     <!--- CTA -->
     <string name="retry_text">Retry</string>
