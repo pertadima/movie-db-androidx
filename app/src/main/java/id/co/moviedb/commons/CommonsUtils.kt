@@ -6,6 +6,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
 import id.co.moviedb.R
+
 /**
  * Created by pertadima on 25,March,2019
  */

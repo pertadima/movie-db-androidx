@@ -9,10 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
-import id.co.moviedb.commons.DiffCallback
-import id.co.moviedb.commons.GeneralRecyclerView
-import id.co.moviedb.commons.goneIf
-import id.co.moviedb.commons.loadImage
+import id.co.moviedb.commons.*
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -20,7 +17,7 @@ import kotlinx.android.synthetic.main.default_toolbar.view.*
 import kotlinx.android.synthetic.main.viewholder_genres.view.*
 import kotlinx.android.synthetic.main.viewholder_now_playing_movies.view.*
 import kotlinx.android.synthetic.main.viewholder_popular_movies.view.*
-import id.co.moviedb.commons.SpacesItemDecoration
+import kotlinx.android.synthetic.main.viewholder_upcoming_movies.view.*
 import javax.inject.Inject
 
 
@@ -70,6 +67,19 @@ class MainActivity : BaseActivity() {
         )
     }
 
+    private val upComingMoviesAdapter by lazy {
+        GeneralRecyclerView<MoviesModel>(
+            diffCallback = diffCallback,
+            holderResId = R.layout.viewholder_upcoming_movies,
+            onBind = { moviesModel, view ->
+               setUpUpComingMovie(moviesModel, view)
+            },
+            itemListener = { moviesModel, _, _ ->
+
+            }
+        )
+    }
+
     override fun onSetupLayout(savedInstanceState: Bundle?) {
         setContentView(R.layout.activity_main)
         setupToolbarProperties(
@@ -98,8 +108,10 @@ class MainActivity : BaseActivity() {
                 }
             }
 
-            observeUpComingMovie().onResult {
-
+            observeUpComingMovie().onResult {result ->
+                result?.let {
+                    upComingMoviesAdapter.setData(it)
+                }
             }
 
             observePopularMovie().onResult { result ->
@@ -121,18 +133,27 @@ class MainActivity : BaseActivity() {
                 pb_genres.goneIf(it)
             }
 
-            fetchHome(getString(R.string.api_key_movie_db))
+            observeLoadingUpComingMovie().onResult {
+                pb_upcoming_movies.goneIf(it)
+            }
+
+            boundNetwork {
+                if (it) {
+                    fetchHome(getString(R.string.api_key_movie_db))
+                }
+            }
         }
     }
 
     private fun initRecyclerView() {
         val snapHelper = LinearSnapHelper()
-        snapHelper.attachToRecyclerView(rv_now_playing)
+        val upComingSnapHelper = LinearSnapHelper()
 
         with(rv_now_playing) {
             adapter = nowPlayingAdapter
             layoutManager = LinearLayoutManager(this@MainActivity, LinearLayout.HORIZONTAL, false)
             isNestedScrollingEnabled = false
+            snapHelper.attachToRecyclerView(this)
         }
 
         with(rv_popular_movie) {
@@ -146,6 +167,13 @@ class MainActivity : BaseActivity() {
             layoutManager = GridLayoutManager(this@MainActivity, 2)
             isNestedScrollingEnabled = false
             addItemDecoration(SpacesItemDecoration(2, 10, false))
+        }
+
+        with(rv_upcoming) {
+            adapter = upComingMoviesAdapter
+            layoutManager = LinearLayoutManager(this@MainActivity, LinearLayout.HORIZONTAL, false)
+            isNestedScrollingEnabled = false
+            upComingSnapHelper.attachToRecyclerView(this)
         }
     }
 
@@ -169,6 +197,13 @@ class MainActivity : BaseActivity() {
     private fun setupGenresMovie(model: GenreModel, view: View) {
         with(view) {
             tv_genre_name.text = model.name
+        }
+    }
+
+    private fun setUpUpComingMovie(model: MoviesModel, view: View) {
+        with(view) {
+            img_thumnail_upcoming.loadImage(getString(R.string.image_url, model.posterPath))
+            tv_movie_title_upcoming.text = model.title
         }
     }
 }

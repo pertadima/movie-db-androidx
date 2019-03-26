@@ -15,12 +15,12 @@ interface NetworkService {
     fun getMoviesGenre(@Query("api_key") apiKey: String): Single<GenresResponse>
 
     @GET("movie/now_playing")
-    fun getUpComingMovies(@Query("api_key")apiKey: String): Single<MoviesResponse>
+    fun getUpComingMovies(@Query("api_key") apiKey: String): Single<MoviesResponse>
 
     @GET("movie/now_playing")
-    fun getNowPlayingMovies(@Query("api_key")apiKey: String): Single<MoviesResponse>
+    fun getNowPlayingMovies(@Query("api_key") apiKey: String): Single<MoviesResponse>
 
     @GET("movie/popular")
-    fun getPopularMovies(@Query("api_key")apiKey: String): Single<MoviesResponse>
+    fun getPopularMovies(@Query("api_key") apiKey: String): Single<MoviesResponse>
 
 }

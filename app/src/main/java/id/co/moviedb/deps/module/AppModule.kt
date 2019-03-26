@@ -12,9 +12,11 @@ import javax.inject.Singleton
  * Created by pertadima on 24,March,2019
  */
 
-@Module(includes = [
-    ActivityBuilder::class
-])
+@Module(
+    includes = [
+        ActivityBuilder::class
+    ]
+)
 open class AppModule(private val context: Context) {
     @Provides
     @Singleton

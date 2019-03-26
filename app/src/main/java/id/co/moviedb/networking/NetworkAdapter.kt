@@ -2,10 +2,7 @@ package id.co.moviedb.networking
 
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesResponse
-import io.reactivex.Observable
 import io.reactivex.Single
-import io.reactivex.disposables.Disposable
-import io.reactivex.functions.Function4
 import javax.inject.Inject
 
 /**

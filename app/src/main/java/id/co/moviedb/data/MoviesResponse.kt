@@ -1,4 +1,5 @@
 package id.co.moviedb.data
+
 import com.google.gson.annotations.SerializedName
 
 

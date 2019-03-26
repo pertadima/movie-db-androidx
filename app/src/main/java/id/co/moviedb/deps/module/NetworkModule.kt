@@ -23,18 +23,18 @@ import javax.inject.Singleton
 open class NetworkModule(private val baseUrl: String) {
     @Provides
     @Singleton
-    fun providesGson() = GsonBuilder()
+    fun providesGson(): Gson = GsonBuilder()
         .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
         .create()
 
     @Provides
     @Singleton
-    fun providesLoggingInterceptor() =
+    fun providesLoggingInterceptor(): HttpLoggingInterceptor =
         HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)
 
     @Provides
     @Singleton
-    fun providesOkHttpClient(loggingInterceptor: HttpLoggingInterceptor) =
+    fun providesOkHttpClient(loggingInterceptor: HttpLoggingInterceptor): OkHttpClient =
         OkHttpClient.Builder()
             .readTimeout(10, TimeUnit.SECONDS)
             .writeTimeout(10, TimeUnit.SECONDS)
@@ -44,7 +44,7 @@ open class NetworkModule(private val baseUrl: String) {
 
     @Provides
     @Singleton
-    fun providesRetrofit(okHttpClient: OkHttpClient, gson: Gson) = Retrofit.Builder()
+    fun providesRetrofit(okHttpClient: OkHttpClient, gson: Gson): Retrofit = Retrofit.Builder()
         .baseUrl(baseUrl)
         .addConverterFactory(GsonConverterFactory.create(gson))
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
@@ -53,7 +53,7 @@ open class NetworkModule(private val baseUrl: String) {
 
     @Provides
     @Singleton
-    fun providesNetworkServices(retrofit: Retrofit) : NetworkService = retrofit.create(NetworkService::class.java)
+    fun providesNetworkServices(retrofit: Retrofit): NetworkService = retrofit.create(NetworkService::class.java)
 
     @Provides
     @Singleton
