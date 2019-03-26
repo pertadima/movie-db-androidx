@@ -5,6 +5,7 @@ import dagger.android.ContributesAndroidInjector
 import id.co.moviedb.deps.ActivityScoped
 import id.co.moviedb.ui.detail.DetailMovieActivity
 import id.co.moviedb.ui.home.MainActivity
+import id.co.moviedb.ui.movies.MoviesActivity
 
 /**
  * Created by pertadima on 24,March,2019
@@ -19,4 +20,8 @@ abstract class ActivityBuilder {
     @ActivityScoped
     @ContributesAndroidInjector
     abstract fun bindDetailMovieActivity(): DetailMovieActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector
+    abstract fun bindMoviesActivity(): MoviesActivity
 }

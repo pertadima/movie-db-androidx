@@ -14,6 +14,8 @@ import id.co.moviedb.commons.*
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesModel
 import id.co.moviedb.ui.detail.DetailMovieActivity
+import id.co.moviedb.ui.movies.MoviesActivity
+import id.co.moviedb.ui.movies.MoviesEnum
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.default_toolbar.view.*
 import kotlinx.android.synthetic.main.viewholder_genres.view.*
@@ -26,6 +28,9 @@ import javax.inject.Inject
 class MainActivity : BaseActivity() {
     companion object {
         const val MOVIES_ID_TAG = "movies_id"
+        const val MOVIES_ENUM_TAG = "movies_enum"
+        const val GENRE_ID_TAG = "genre_id"
+        const val STATIC_PAGE = 1
     }
 
     @Inject
@@ -72,7 +77,10 @@ class MainActivity : BaseActivity() {
                 setupGenresMovie(genreModel, view)
             },
             itemListener = { genreModel, _, _ ->
-
+                startActivity(Intent(this@MainActivity, MoviesActivity::class.java).apply {
+                    putExtra(MOVIES_ENUM_TAG, MoviesEnum.BYGENRE)
+                    putExtra(GENRE_ID_TAG, genreModel.id)
+                })
             }
         )
     }
@@ -104,6 +112,7 @@ class MainActivity : BaseActivity() {
     override fun onViewReady(savedInstanceState: Bundle?) {
         initRecyclerView()
         observeState()
+        onClickSeeAll()
     }
 
     private fun observeState() {
@@ -152,7 +161,7 @@ class MainActivity : BaseActivity() {
             boundNetwork {
                 connectionView(it)
                 if (it) {
-                    fetchHome(getString(R.string.api_key_movie_db))
+                    fetchHome(getString(R.string.api_key_movie_db), STATIC_PAGE)
                 }
             }
         }
@@ -188,6 +197,26 @@ class MainActivity : BaseActivity() {
             isNestedScrollingEnabled = false
             upComingSnapHelper.attachToRecyclerView(this)
         }
+    }
+
+    private fun onClickSeeAll() {
+        tv_see_all_now_playing.setOnClickListener {
+            toMoviesActivity(MoviesEnum.BYNOWPLAYING)
+        }
+
+        tv_see_all_popular_movie.setOnClickListener {
+            toMoviesActivity(MoviesEnum.BYPOPULAR)
+        }
+
+        tv_see_all_upcoming_movie.setOnClickListener {
+            toMoviesActivity(MoviesEnum.BYUPCOMING)
+        }
+    }
+
+    private fun toMoviesActivity(moviesEnum: MoviesEnum) {
+        startActivity(Intent(this@MainActivity, MoviesActivity::class.java).apply {
+            putExtra(MOVIES_ENUM_TAG, moviesEnum)
+        })
     }
 
     private fun setupNowPlayingMovie(model: MoviesModel, view: View) {

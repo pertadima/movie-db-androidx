@@ -45,11 +45,11 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         listPopularMovie.value = listOf()
     }
 
-    fun fetchHome(apiKey: String) {
+    fun fetchHome(apiKey: String, page: Int) {
         fetchGenre(apiKey)
-        fetchPopularMovie(apiKey)
-        fetchNowPlayingMovie(apiKey)
-        fetchUpComingMovie(apiKey)
+        fetchPopularMovie(apiKey, page)
+        fetchNowPlayingMovie(apiKey, page)
+        fetchUpComingMovie(apiKey, page)
     }
 
     private fun fetchGenre(apiKey: String) {
@@ -63,9 +63,9 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         })
     }
 
-    private fun fetchPopularMovie(apiKey: String) {
+    private fun fetchPopularMovie(apiKey: String, page: Int) {
         isLoadingPopularMovie.postValue(true)
-        networkAdapter.getPopularMovie(apiKey).onResult({
+        networkAdapter.getPopularMovie(apiKey, page).onResult({
             listPopularMovie.postValue(it.results?.take(10))
             isLoadingPopularMovie.postValue(false)
         }, {
@@ -74,9 +74,9 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         })
     }
 
-    private fun fetchNowPlayingMovie(apiKey: String) {
+    private fun fetchNowPlayingMovie(apiKey: String, page: Int) {
         isLoadingNowPlayingMovie.postValue(true)
-        networkAdapter.getNowPlayingMovie(apiKey).onResult({
+        networkAdapter.getNowPlayingMovie(apiKey, page).onResult({
             listNowPlayingMovie.postValue(it.results)
             isLoadingNowPlayingMovie.postValue(false)
         }, {
@@ -85,9 +85,9 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
         })
     }
 
-    private fun fetchUpComingMovie(apiKey: String) {
+    private fun fetchUpComingMovie(apiKey: String, page: Int) {
         isLoadingUpComingMovie.postValue(true)
-        networkAdapter.getUpComingMovie(apiKey).onResult({
+        networkAdapter.getUpComingMovie(apiKey, page).onResult({
             listUpComingMovie.postValue(it.results)
             isLoadingUpComingMovie.postValue(false)
         }, {

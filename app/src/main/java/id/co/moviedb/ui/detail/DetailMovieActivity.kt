@@ -1,5 +1,6 @@
 package id.co.moviedb.ui.detail
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
@@ -17,6 +18,10 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.default_toolbar.view.*
 import kotlinx.android.synthetic.main.viewholder_genres.view.*
 import id.co.moviedb.commons.SpacesItemDecoration
+import id.co.moviedb.ui.home.MainActivity.Companion.GENRE_ID_TAG
+import id.co.moviedb.ui.home.MainActivity.Companion.MOVIES_ENUM_TAG
+import id.co.moviedb.ui.movies.MoviesActivity
+import id.co.moviedb.ui.movies.MoviesEnum
 import javax.inject.Inject
 
 /**
@@ -38,7 +43,10 @@ class DetailMovieActivity : BaseActivity() {
                 setupGenresMovie(genreModel, view)
             },
             itemListener = { genreModel, _, _ ->
-
+                startActivity(Intent(this@DetailMovieActivity, MoviesActivity::class.java).apply {
+                    putExtra(MOVIES_ENUM_TAG, MoviesEnum.BYGENRE)
+                    putExtra(GENRE_ID_TAG, genreModel.id)
+                })
             }
         )
     }

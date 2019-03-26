@@ -80,11 +80,8 @@ abstract class BaseActivity : DaggerAppCompatActivity() {
         tvTitle?.setText(title)
     }
 
-    fun changeStatusBarColor(color: Int) {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-            window.statusBarColor = color
-        }
+    fun String.changeToolbarTitle(tvTitle: TextView? = null) {
+        tvTitle?.text = this
     }
 
     override fun onOptionsItemSelected(item: MenuItem?): Boolean {

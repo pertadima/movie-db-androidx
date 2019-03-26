@@ -18,16 +18,20 @@ class NetworkAdapter @Inject constructor(private val networkService: NetworkServ
             }
     }
 
-    fun getNowPlayingMovie(apiKey: String): Single<MoviesResponse> {
-        return networkService.getNowPlayingMovies(apiKey)
+    fun getNowPlayingMovie(apiKey: String, page: Int): Single<MoviesResponse> {
+        return networkService.getNowPlayingMovies(apiKey, page)
     }
 
-    fun getPopularMovie(apiKey: String): Single<MoviesResponse> {
-        return networkService.getPopularMovies(apiKey)
+    fun getPopularMovie(apiKey: String, page: Int): Single<MoviesResponse> {
+        return networkService.getPopularMovies(apiKey, page)
     }
 
-    fun getUpComingMovie(apiKey: String): Single<MoviesResponse> {
-        return networkService.getUpComingMovies(apiKey)
+    fun getUpComingMovie(apiKey: String, page: Int): Single<MoviesResponse> {
+        return networkService.getUpComingMovies(apiKey, page)
+    }
+
+    fun getDiscoverMovies(apiKey: String, page: Int): Single<MoviesResponse> {
+        return networkService.getDiscoverMovies(apiKey, page)
     }
 
     fun getDetailMovies(id: Int, apiKey: String): Single<DetailMoviesResponse> {

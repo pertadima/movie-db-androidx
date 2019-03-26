@@ -15,6 +15,7 @@
             android:theme="@style/AppTheme"
             tools:ignore="GoogleAppIndexingWarning"
             android:fullBackupContent="true">
+
         <activity
                 android:name=".ui.home.MainActivity"
                 android:screenOrientation="portrait">
@@ -27,6 +28,10 @@
 
         <activity
                 android:name=".ui.detail.DetailMovieActivity"
+                android:screenOrientation="portrait"/>
+
+        <activity
+                android:name=".ui.movies.MoviesActivity"
                 android:screenOrientation="portrait"/>
     </application>
 
