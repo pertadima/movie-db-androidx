@@ -8,6 +8,21 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="DefaultTextTitle">
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/roboto_bold</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+
+    <style name="DefaultText">
+        <item name="android:textColor">@color/title_color</item>
+        <item name="android:fontFamily">@font/roboto_light</item>
+        <item name="android:layout_marginStart">20dp</item>
+        <item name="android:layout_marginEnd">20dp</item>
+    </style>
+
     <style name="HeaderTitle">
         <item name="android:textColor">@color/title_color</item>
         <item name="android:textSize">15sp</item>

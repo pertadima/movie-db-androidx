@@ -22,5 +22,4 @@ interface NetworkService {
 
     @GET("movie/popular")
     fun getPopularMovies(@Query("api_key") apiKey: String): Single<MoviesResponse>
-
 }

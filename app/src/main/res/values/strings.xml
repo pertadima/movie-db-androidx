@@ -2,12 +2,22 @@
     <string name="app_name">Movie-db</string>
     <string name="empty_string"> </string>
 
+    <!--- Movie DB String Value -->
     <string name="api_key_movie_db">c8ff8c510e74a75a3643870242745d71</string>
     <string name="image_url">https://image.tmdb.org/t/p/w500%s</string>
 
+    <!--- Menu Value -->
     <string name="now_playing_text">Now Playing</string>
     <string name="see_all_text">See All</string>
     <string name="popular_movie_text">Popular Movie</string>
     <string name="genres_text">Genres</string>
     <string name="upcoming_movies_text">Upcoming Movies</string>
+
+    <!--- Error Value -->
+    <string name="no_internet_text_title">No Internet</string>
+    <string name="no_internet_text_desc">Sorry, no internet connection detected. Make sure Wi-Fi or cellular mobile data
+    is turned on, then try again.</string>
+
+    <!--- CTA -->
+    <string name="retry_text">Retry</string>
 </resources>
