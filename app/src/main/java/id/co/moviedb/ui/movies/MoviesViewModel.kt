@@ -2,7 +2,10 @@ package id.co.moviedb.ui.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
 import id.co.moviedb.base.BaseViewModel
+import id.co.moviedb.data.MoviesModel
 import id.co.moviedb.data.MoviesResponse
 import id.co.moviedb.deps.ActivityScoped
 import id.co.moviedb.networking.NetworkAdapter
@@ -18,9 +21,14 @@ class MoviesViewModel @Inject constructor(private val networkAdapter: NetworkAda
     private val moviesResponse = MutableLiveData<MoviesResponse?>()
     fun observeMovies(): LiveData<MoviesResponse?> = moviesResponse
 
+    private lateinit var listMovies: MutableLiveData<PagedList<MoviesModel?>>
+    fun observeListMovie(): LiveData<PagedList<MoviesModel?>> = listMovies
+
+
     fun fetchNowPlayingMovie(apiKey: String, page: Int) {
         networkAdapter.getNowPlayingMovie(apiKey, page).onResult({
             moviesResponse.postValue(it)
+
         }, {
             isError.postValue(it)
         })
