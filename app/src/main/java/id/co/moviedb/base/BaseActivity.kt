@@ -10,8 +10,8 @@ import androidx.appcompat.widget.Toolbar
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import dagger.android.support.DaggerAppCompatActivity
+import id.co.core.network.ConnectionLiveData
 import id.co.moviedb.R
-import id.co.moviedb.networking.ConnectionLiveData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject

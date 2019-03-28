@@ -5,9 +5,13 @@ import android.os.Bundle
 import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
+import id.co.core.commons.DiffCallback
+import id.co.core.commons.GeneralRecyclerView
+import id.co.core.commons.goneIf
+import id.co.core.commons.loadImage
+import id.co.core.commons.SpacesItemDecoration
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
-import id.co.moviedb.commons.*
 import id.co.moviedb.data.DetailMoviesResponse
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.ui.home.MainActivity.Companion.GENRE_ID_TAG
@@ -20,7 +24,6 @@ import kotlinx.android.synthetic.main.activity_detail.*
 import kotlinx.android.synthetic.main.default_toolbar.view.*
 import kotlinx.android.synthetic.main.viewholder_genres.view.*
 import javax.inject.Inject
-
 /**
  * Created by pertadima on 26,March,2019
  */

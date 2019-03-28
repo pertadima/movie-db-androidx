@@ -6,9 +6,9 @@ import dagger.Component
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
 import dagger.android.support.AndroidSupportInjectionModule
+import id.co.core.network.NetworkModule
 import id.co.moviedb.MainApp
 import id.co.moviedb.deps.module.AppModule
-import id.co.moviedb.deps.module.NetworkModule
 import javax.inject.Singleton
 
 /**

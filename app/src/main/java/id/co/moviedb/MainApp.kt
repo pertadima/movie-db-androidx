@@ -2,10 +2,11 @@ package id.co.moviedb
 
 import dagger.android.AndroidInjector
 import dagger.android.DaggerApplication
+import id.co.core.network.NetworkModule
 import id.co.moviedb.deps.AppComponent
 import id.co.moviedb.deps.DaggerAppComponent
 import id.co.moviedb.deps.module.AppModule
-import id.co.moviedb.deps.module.NetworkModule
+
 
 /**
  * Created by pertadima on 22,March,2019

@@ -8,9 +8,9 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
+import id.co.core.commons.*
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
-import id.co.moviedb.commons.*
 import id.co.moviedb.data.GenreModel
 import id.co.moviedb.data.MoviesModel
 import id.co.moviedb.ui.detail.DetailMovieActivity

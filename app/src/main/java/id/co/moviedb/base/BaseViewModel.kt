@@ -4,7 +4,7 @@ import androidx.annotation.CallSuper
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import id.co.moviedb.networking.NetworkError
+import id.co.core.network.NetworkError
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
