@@ -69,6 +69,11 @@ class MoviesActivity : BaseActivity() {
     override fun onViewReady(savedInstanceState: Bundle?) {
         enumMovie = intent.getSerializableExtra(MOVIES_ENUM_TAG) as MoviesEnum
         observeViewModel()
+        setToolbar()
+        setRecyclerView()
+    }
+
+    private fun setRecyclerView() {
         with(rv_movies) {
             val gridLayoutManager = GridLayoutManager(this@MoviesActivity, 2)
             adapter = moviesAdapter
@@ -94,7 +99,6 @@ class MoviesActivity : BaseActivity() {
     }
 
     private fun observeViewModel() {
-
         with(moviesViewModel) {
             observeMovies().onResult { response ->
                 totalRecords = response?.totalResults ?: 0
@@ -110,50 +114,52 @@ class MoviesActivity : BaseActivity() {
                 isLoading = it
                 pb_paging.goneIf(it)
             }
-            fetchItem(this)
+
+            boundNetwork {
+                if (it) {
+                    fetchItem(this)
+                }
+            }
         }
+    }
+
+    private fun setToolbar() {
+        titleToolbar = when (enumMovie) {
+            MoviesEnum.BYNOWPLAYING -> {
+                getString(R.string.now_playing_text)
+            }
+            MoviesEnum.BYPOPULAR -> {
+                getString(R.string.popular_movie_text)
+            }
+            MoviesEnum.BYUPCOMING -> {
+                getString(R.string.upcoming_movies_text)
+            }
+            MoviesEnum.BYGENRE -> {
+                intent.getStringExtra(GENRE_NAME_TAG)
+            }
+        }
+        titleToolbar.changeToolbarTitle(toolbar.toolbar_title)
     }
 
     private fun fetchItem(viewModel: MoviesViewModel) {
         with(viewModel) {
             when (enumMovie) {
                 MoviesEnum.BYNOWPLAYING -> {
-                    titleToolbar = getString(R.string.now_playing_text)
-                    boundNetwork {
-                        if (it) {
-                            fetchNowPlayingMovie(getString(R.string.api_key_movie_db), currentPage)
-                        }
-                    }
+                    fetchNowPlayingMovie(getString(R.string.api_key_movie_db), currentPage)
                 }
                 MoviesEnum.BYPOPULAR -> {
-                    titleToolbar = getString(R.string.popular_movie_text)
-                    boundNetwork {
-                        if (it) {
-                            fetchPopularMovie(getString(R.string.api_key_movie_db), currentPage)
-                        }
-                    }
+                    fetchPopularMovie(getString(R.string.api_key_movie_db), currentPage)
                 }
                 MoviesEnum.BYUPCOMING -> {
-                    titleToolbar = getString(R.string.upcoming_movies_text)
-                    boundNetwork {
-                        if (it) {
-                            fetchUpComingMovie(getString(R.string.api_key_movie_db), currentPage)
-                        }
-                    }
+                    fetchUpComingMovie(getString(R.string.api_key_movie_db), currentPage)
                 }
                 MoviesEnum.BYGENRE -> {
-                    titleToolbar = intent.getStringExtra(GENRE_NAME_TAG)
-                    boundNetwork {
-                        if (it) {
-                            fetchDiscoverMovie(
-                                getString(R.string.api_key_movie_db), currentPage,
-                                intent.getIntExtra(GENRE_ID_TAG, 0)
-                            )
-                        }
-                    }
+                    fetchDiscoverMovie(
+                        getString(R.string.api_key_movie_db), currentPage,
+                        intent.getIntExtra(GENRE_ID_TAG, 0)
+                    )
                 }
             }
-            titleToolbar.changeToolbarTitle(toolbar.toolbar_title)
         }
     }
 

@@ -21,14 +21,9 @@ class MoviesViewModel @Inject constructor(private val networkAdapter: NetworkAda
     private val moviesResponse = MutableLiveData<MoviesResponse?>()
     fun observeMovies(): LiveData<MoviesResponse?> = moviesResponse
 
-    private lateinit var listMovies: MutableLiveData<PagedList<MoviesModel?>>
-    fun observeListMovie(): LiveData<PagedList<MoviesModel?>> = listMovies
-
-
     fun fetchNowPlayingMovie(apiKey: String, page: Int) {
         networkAdapter.getNowPlayingMovie(apiKey, page).onResult({
             moviesResponse.postValue(it)
-
         }, {
             isError.postValue(it)
         })
