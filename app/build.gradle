@@ -45,7 +45,7 @@ dependencies {
 
     //Live Data
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
-    annotationProcessor 'androidx.lifecycle:lifecycle-compiler:2.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.0.0'
 
     // RETROFIT
     implementation 'com.squareup.retrofit2:retrofit:2.4.0'
