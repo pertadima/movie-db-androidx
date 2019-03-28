@@ -17,4 +17,4 @@ Hey! Yo Bro Watsap, welcome to My Repository. Please follow my instruction.
   - Live Data
   
  #Overview
- ![Overview](https://thumbs.gfycat.com/ForkedAbsoluteFurseal-mobile.mp4)
+ ![Overview](https://thumbs.gfycat.com/ForkedAbsoluteFurseal-small.gif)
