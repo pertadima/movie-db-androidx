@@ -6,6 +6,8 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'kotlin-kapt'
 
+apply from: "$rootDir/commonlib-android/detekt.gradle"
+
 android {
     compileSdkVersion 28
     defaultConfig {
@@ -39,7 +41,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //Core
-    implementation 'com.github.pertadima:core-library-android:1.1.0'
+    implementation 'com.github.pertadima:core-library-android:1.1.1'
 
     //Live Data
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'

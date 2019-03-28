@@ -102,7 +102,7 @@ class MoviesActivity : BaseActivity() {
         with(moviesViewModel) {
             observeMovies().onResult { response ->
                 totalRecords = response?.totalResults ?: 0
-                maxPage = response?.totalPages ?: 0
+                maxPage = response?.totalPages ?: 1
 
                 response?.results?.let {
                     totalCurrentItem += it.size
