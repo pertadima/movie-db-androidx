@@ -1,10 +1,8 @@
 package id.co.moviedb.base
 
 
-import android.os.Build
 import android.os.Bundle
 import android.view.MenuItem
-import android.view.WindowManager
 import android.widget.TextView
 import androidx.annotation.DrawableRes
 import androidx.annotation.StringRes
@@ -17,7 +15,6 @@ import id.co.moviedb.networking.ConnectionLiveData
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
 import javax.inject.Inject
-
 
 /**
  * Created by pertadima on 24,March,2019

@@ -92,7 +92,7 @@ class MainActivity : BaseActivity() {
             diffCallback = diffCallback,
             holderResId = R.layout.viewholder_upcoming_movies,
             onBind = { moviesModel, view ->
-               setUpUpComingMovie(moviesModel, view)
+                setUpUpComingMovie(moviesModel, view)
             },
             itemListener = { moviesModel, _, _ ->
                 startActivity(Intent(this@MainActivity, DetailMovieActivity::class.java).apply {
@@ -131,7 +131,7 @@ class MainActivity : BaseActivity() {
                 }
             }
 
-            observeUpComingMovie().onResult {result ->
+            observeUpComingMovie().onResult { result ->
                 result?.let {
                     upComingMoviesAdapter.setData(it)
                 }

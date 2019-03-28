@@ -17,23 +17,33 @@ interface NetworkService {
     fun getMoviesGenre(@Query("api_key") apiKey: String): Single<GenresResponse>
 
     @GET("movie/now_playing")
-    fun getUpComingMovies(@Query("api_key") apiKey: String,
-                          @Query("page") page: Int): Single<MoviesResponse>
+    fun getUpComingMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
+    ): Single<MoviesResponse>
 
     @GET("movie/now_playing")
-    fun getNowPlayingMovies(@Query("api_key") apiKey: String,
-                            @Query("page") page: Int): Single<MoviesResponse>
+    fun getNowPlayingMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
+    ): Single<MoviesResponse>
 
     @GET("movie/popular")
-    fun getPopularMovies(@Query("api_key") apiKey: String,
-                         @Query("page") page: Int): Single<MoviesResponse>
+    fun getPopularMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int
+    ): Single<MoviesResponse>
 
     @GET("movie/{id}")
-    fun getDetailMovies(@Path("id") id: Int,
-                        @Query("api_key") apiKey: String): Single<DetailMoviesResponse>
+    fun getDetailMovies(
+        @Path("id") id: Int,
+        @Query("api_key") apiKey: String
+    ): Single<DetailMoviesResponse>
 
     @GET("discover/movie")
-    fun getDiscoverMovies(@Query("api_key") apiKey: String,
-                          @Query("page") page: Int,
-                          @Query("with_genres") genre: Int): Single<MoviesResponse>
+    fun getDiscoverMovies(
+        @Query("api_key") apiKey: String,
+        @Query("page") page: Int,
+        @Query("with_genres") genre: Int
+    ): Single<MoviesResponse>
 }

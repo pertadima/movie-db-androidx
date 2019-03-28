@@ -21,7 +21,7 @@ class DetailMovieViewModel @Inject constructor(private val networkAdapter: Netwo
     fun fetchDetailMovies(id: Int, apiKey: String) {
         networkAdapter.getDetailMovies(id, apiKey).onResult({
             dataDetail.postValue(it)
-        },{
+        }, {
             isError.postValue(it)
         })
     }

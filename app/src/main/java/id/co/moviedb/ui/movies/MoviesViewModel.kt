@@ -2,10 +2,7 @@ package id.co.moviedb.ui.movies
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.paging.LivePagedListBuilder
-import androidx.paging.PagedList
 import id.co.moviedb.base.BaseViewModel
-import id.co.moviedb.data.MoviesModel
 import id.co.moviedb.data.MoviesResponse
 import id.co.moviedb.deps.ActivityScoped
 import id.co.moviedb.networking.NetworkAdapter
