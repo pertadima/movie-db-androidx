@@ -6,7 +6,11 @@ import android.view.View
 import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import id.co.core.commons.*
+import id.co.core.commons.DiffCallback
+import id.co.core.commons.GeneralRecyclerView
+import id.co.core.commons.SpacesItemDecoration
+import id.co.core.commons.goneIf
+import id.co.core.commons.loadImage
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
 import id.co.moviedb.data.MoviesModel
@@ -26,6 +30,13 @@ import javax.inject.Inject
  */
 
 class MoviesActivity : BaseActivity() {
+    companion object {
+        const val SPAN_COUNT = 2
+        const val SPAN_WIDTH = 10
+        const val DEFAULT_GENRE_ID = 0
+        const val DEFAULT_PAGE = 1
+    }
+
     @Inject
     lateinit var moviesViewModel: MoviesViewModel
 
@@ -75,10 +86,10 @@ class MoviesActivity : BaseActivity() {
 
     private fun setRecyclerView() {
         with(rv_movies) {
-            val gridLayoutManager = GridLayoutManager(this@MoviesActivity, 2)
+            val gridLayoutManager = GridLayoutManager(this@MoviesActivity, SPAN_COUNT)
             adapter = moviesAdapter
             layoutManager = gridLayoutManager
-            addItemDecoration(SpacesItemDecoration(2, 10, false))
+            addItemDecoration(SpacesItemDecoration(SPAN_COUNT, SPAN_WIDTH, false))
 
             addOnScrollListener(object : RecyclerView.OnScrollListener() {
                 override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -86,7 +97,7 @@ class MoviesActivity : BaseActivity() {
                     val totalItem = gridLayoutManager.itemCount
                     val lastVisible = gridLayoutManager.findLastVisibleItemPosition()
 
-                    if (!isLoading && totalItem == lastVisible + 1
+                    if (!isLoading && totalItem == lastVisible + DEFAULT_PAGE
                         && totalRecords != totalCurrentItem
                         && currentPage != maxPage
                     ) {
@@ -101,8 +112,8 @@ class MoviesActivity : BaseActivity() {
     private fun observeViewModel() {
         with(moviesViewModel) {
             observeMovies().onResult { response ->
-                totalRecords = response?.totalResults ?: 0
-                maxPage = response?.totalPages ?: 1
+                totalRecords = response?.totalResults ?: DEFAULT_GENRE_ID
+                maxPage = response?.totalPages ?: DEFAULT_PAGE
 
                 response?.results?.let {
                     totalCurrentItem += it.size
@@ -156,7 +167,7 @@ class MoviesActivity : BaseActivity() {
                 MoviesEnum.BYGENRE -> {
                     fetchDiscoverMovie(
                         getString(R.string.api_key_movie_db), currentPage,
-                        intent.getIntExtra(GENRE_ID_TAG, 0)
+                        intent.getIntExtra(GENRE_ID_TAG, DEFAULT_GENRE_ID)
                     )
                 }
             }

@@ -8,7 +8,11 @@ import androidx.appcompat.widget.Toolbar
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import id.co.core.commons.*
+import id.co.core.commons.DiffCallback
+import id.co.core.commons.GeneralRecyclerView
+import id.co.core.commons.SpacesItemDecoration
+import id.co.core.commons.goneIf
+import id.co.core.commons.loadImage
 import id.co.moviedb.R
 import id.co.moviedb.base.BaseActivity
 import id.co.moviedb.data.GenreModel
@@ -32,6 +36,8 @@ class MainActivity : BaseActivity() {
         const val GENRE_ID_TAG = "genre_id"
         const val GENRE_NAME_TAG = "genre_name"
         const val STATIC_PAGE = 1
+        const val SPAN_COUNT = 2
+        const val SPAN_WIDTH = 10
     }
 
     @Inject
@@ -192,9 +198,9 @@ class MainActivity : BaseActivity() {
 
         with(rv_genres) {
             adapter = genresAdapter
-            layoutManager = GridLayoutManager(this@MainActivity, 2)
+            layoutManager = GridLayoutManager(this@MainActivity, SPAN_COUNT)
             isNestedScrollingEnabled = false
-            addItemDecoration(SpacesItemDecoration(2, 10, false))
+            addItemDecoration(SpacesItemDecoration(SPAN_COUNT, SPAN_WIDTH, false))
         }
 
         with(rv_upcoming) {

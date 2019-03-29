@@ -29,6 +29,12 @@ import javax.inject.Inject
  */
 
 class DetailMovieActivity : BaseActivity() {
+    companion object {
+        const val SPAN_COUNT = 2
+        const val SPAN_WIDTH = 10
+        const val DEFAULT_NULL = 0
+    }
+
     @Inject
     lateinit var detailMovieViewModel: DetailMovieViewModel
 
@@ -62,13 +68,13 @@ class DetailMovieActivity : BaseActivity() {
     }
 
     override fun onViewReady(savedInstanceState: Bundle?) {
-        val idMovies = intent.getIntExtra(MOVIES_ID_TAG, 0)
+        val idMovies = intent.getIntExtra(MOVIES_ID_TAG, DEFAULT_NULL)
         observeState(idMovies)
         with(rv_genres) {
             adapter = genresAdapter
-            layoutManager = GridLayoutManager(this@DetailMovieActivity, 2)
+            layoutManager = GridLayoutManager(this@DetailMovieActivity, SPAN_COUNT)
             isNestedScrollingEnabled = false
-            addItemDecoration(SpacesItemDecoration(2, 10, false))
+            addItemDecoration(SpacesItemDecoration(SPAN_COUNT, SPAN_WIDTH, false))
         }
     }
 

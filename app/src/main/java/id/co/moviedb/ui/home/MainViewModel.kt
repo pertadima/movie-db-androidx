@@ -16,6 +16,10 @@ import javax.inject.Inject
 @ActivityScoped
 class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapter) : BaseViewModel() {
 
+    companion object {
+        const val TAKE_DATA = 10
+    }
+
     private val listGenre = MutableLiveData<List<GenreModel>?>()
     private val listNowPlayingMovie = MutableLiveData<List<MoviesModel>?>()
     private val listUpComingMovie = MutableLiveData<List<MoviesModel>?>()
@@ -66,7 +70,7 @@ class MainViewModel @Inject constructor(private val networkAdapter: NetworkAdapt
     private fun fetchPopularMovie(apiKey: String, page: Int) {
         isLoadingPopularMovie.postValue(true)
         networkAdapter.getPopularMovie(apiKey, page).onResult({
-            listPopularMovie.postValue(it.results?.take(10))
+            listPopularMovie.postValue(it.results?.take(TAKE_DATA))
             isLoadingPopularMovie.postValue(false)
         }, {
             isError.postValue(it)
