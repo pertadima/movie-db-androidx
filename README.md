@@ -3,8 +3,8 @@
 Hey! Yo Bro Watsap, welcome to My Repository. Please follow my instruction.
 
 # HOW TO CLONE:
-if using https : git clone --recursive https://github.com/pertadima/movie-db-androidx.git
-if using ssl : git clone --recursive git@github.com:pertadima/movie-db-androidx.git
+  - if using https : git clone --recursive https://github.com/pertadima/movie-db-androidx.git
+  - if using ssl : git clone --recursive git@github.com:pertadima/movie-db-androidx.git
 
 
 # FEATURES:
