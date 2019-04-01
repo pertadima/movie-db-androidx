@@ -41,7 +41,7 @@ dependencies {
     implementation 'androidx.cardview:cardview:1.0.0'
 
     //Core
-    implementation 'com.github.pertadima:core-library-android:1.1.1'
+    implementation 'com.github.pertadima:core-library-android:1.2.1'
 
     //Live Data
     implementation 'androidx.lifecycle:lifecycle-extensions:2.0.0'
